@@ -7,6 +7,7 @@ export type ButtonType = {
     disabled?: boolean
     className?: string
 
+
 }
 
 export const Button: FC<ButtonType> = (props) => {
@@ -22,7 +23,7 @@ export const Button: FC<ButtonType> = (props) => {
 
 
     return (
-        <button disabled={disabled} className={finalClassName}  onClick={onClickHandler}>{name}</button>
+        <button  disabled={disabled} className={finalClassName}  onClick={onClickHandler}>{name}</button>
     );
 };
 

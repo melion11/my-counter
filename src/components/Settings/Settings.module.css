@@ -1,0 +1,45 @@
+.buttonWrap {
+    width: 450px;
+    background-color: #89b4b0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.counterItem {
+    border-radius: 10px;
+    font-size: 20px;
+    color: #a45ca4;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.inputDisplay {
+    border: none;
+    outline: none;
+    background: #cde0e8;
+    border-radius: 10px;
+    border: 2px solid #89b4b0;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #a45ca4;
+}
+
+.inputWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+
+.inputError {
+    border: 2px solid #bb1515;
+    background-color: rgba(187, 21, 21, 0.24);
+    color: #bb1515;
+}

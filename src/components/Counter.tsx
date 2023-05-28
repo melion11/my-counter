@@ -1,46 +1,43 @@
 import React, {FC, useState} from 'react';
+import '../App.css';
 import {Button} from './Button';
 import s from './Counter.module.css'
-import Display from './Display';
+import {Display} from './Display';
 
-export type CounterPropsType = {}
+export type CounterPropsType = {
+    addCount: () => void
+    resetCount: () => void
+    counter: number
+    minValue: number,
+    maxValue: number
+    settingsChanged: boolean
+    error: string
+
+}
 
 export const Counter: FC<CounterPropsType> = (props) => {
-    const {...restProps} = props
-
-    const value = {
-        minValue: 0,
-        maxValue: 5
-    }
+    const {counter, addCount, resetCount, minValue, maxValue,settingsChanged, error, ...restProps} = props
 
 
-    const [counter, setCounter] = useState(value.minValue)
-
-    const addCount = () => {
-        let newCounter = counter + 1
-        if (newCounter <= value.maxValue) {
-            setCounter(newCounter)
-        }
-    }
-
-    const resetCount = () => {
-        setCounter(value.minValue)
-    }
-
+    const finalClassName = `${s.spanChange} ${error === 'Incorrect Value!' ? s.spanError : '' }`
+    const spanError = error === `Enter values and press "set"` ? `Enter values and press "set"` : 'Incorrect Value!'
+    const disabledAddButton = counter >= maxValue || settingsChanged
+    const disabledResetButton = counter <= minValue || settingsChanged
 
     return (
-        <div >
-            <Display counter={counter}/>
-            <div className={s.counterWrapper}>
-                <div className={s.buttonsWrap}>
-                    <Button className={s.button} disabled={counter === value.maxValue ? true : false} name={'inc'}
-                            callBack={addCount}/>
-                    <Button className={s.button} disabled={counter <= value.minValue ? true : false} name={'reset'}
-                            callBack={resetCount}/>
-                </div>
+        <div className="wrapper">
+
+            {settingsChanged ? <span className={finalClassName}>{spanError}</span>
+                : <Display maxValue={maxValue} counter={counter}/>}
+
+            <div className={s.buttonsWrap}>
+                <Button className={s.button} disabled={disabledAddButton} name={'inc'}
+                        callBack={addCount}/>
+                <Button className={s.button} disabled={disabledResetButton} name={'reset'}
+                        callBack={resetCount}/>
             </div>
+
         </div>
     );
-}
-    ;
+};
 

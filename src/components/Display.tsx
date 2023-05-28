@@ -1,17 +1,17 @@
-import React from 'react';
+import React, {FC} from 'react';
 import s from './Counter.module.css';
 
 
 export type DisplayType = {
     counter:number
+    maxValue: number
 }
 
-const Display = (props: DisplayType) => {
+export const Display: FC<DisplayType> = ({counter,maxValue}) => {
     return (
 
-            <div className={`${s.counterItem} ${props.counter === 5 ? s.counterRed : ''}`}>{props.counter}</div>
+            <div className={`${s.counterItem} ${counter >= maxValue ? s.counterRed : ''}`}>{counter}</div>
 
     );
 };
 
-export default Display;
